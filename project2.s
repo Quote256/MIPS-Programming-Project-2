@@ -57,13 +57,6 @@ counter:
         lw $t6, StringInput($t1)
 
         j loop
-    
-    #Lowercase Statement
-    lowercase:
-        bge $s2, 121, counter
-        sub $s2, $s2, 87 #Subtracts 87 from $s2, and stores the value in $s2
-        add $s3, $s3, $s2
-        j counter
         
         
 #Prints invalid input
