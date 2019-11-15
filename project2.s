@@ -38,9 +38,13 @@ Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input i
         la $a0, StringInput
         li $a1, 1001
         syscall
+        jal first
 
-Load_Array:
-        move $t0, $a0
+    first:
+	    la $t0,data
+	    add $t0,$t0,$t1
+	    lb $s0, ($t0)
+
 
 counter:
         addi $t4, $t4, 1 #Adds 1 to $t4 and stores the value in $t4
