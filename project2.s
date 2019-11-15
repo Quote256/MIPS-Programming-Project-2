@@ -41,9 +41,16 @@ Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input i
         jal first
 
     first:
-	    la $t0,data
+	    la $t0, StringInput
 	    add $t0,$t0,$t1
 	    lb $s0, ($t0)
+        beq $s0, 0, last
+	    beq $s0, 9, skip
+	    beq $s0, 32, skip
+
+    skip:
+        addi $t1, $t1,1
+	j before
 
 
 counter:
