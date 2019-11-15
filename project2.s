@@ -39,6 +39,14 @@ Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input i
         li $a1, 1001
         syscall
 
+Load_Array:
+        move $t0, $a0
+
+counter:
+        addi $t4, $t4, 1 #Adds 1 to $t4 and stores the value in $t4
+        lb $s2, ($t4)
+        j scan
+
 #Storing variables
         la $t0, StringInput
         lw $t1, iterator
@@ -46,7 +54,9 @@ Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input i
 #Loop
      loop:
         bgt $t1, $t2, InvalidStatement #If iterator > size = Invalid Statement
-        lb $t3, $t1, 0($t0)
+        lw $t6, StringInput($t1)
+
+        j loop
         
         
 #Prints invalid input
