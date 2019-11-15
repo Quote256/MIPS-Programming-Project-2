@@ -9,11 +9,14 @@ inputMessage: .asciiz "Input a string: " #Prompt to input a string
 #Initialize an array
 StringInput: .space 1001                 #Allocated space for up to 1000 characters
 #Initializing the numbers that I multiply the input with
-baseN: .word 34
+baseN: .word 34 
 baseN2: .word 1156
 baseN3: .word 39304
-iterator: .word 0
-size: .word 4
+iterator: .word 0 #Added iterator
+size: .word 4 #Added size
+tab: .word 9 #For tabs
+space: .word 32 #For spaces
+
 outputMessage: .asciiz "\nThe output is: " #Output message
 Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input is invalid
 
@@ -36,15 +39,17 @@ Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input i
         lw $t2, size
 #Loop
      loop:
-        bg   
+        bgt $t1, $t2, InvalidStatement #If iterator > size = Invalid Statement
+        lb $t3, $t1, 0($t0)
+        
         
 #Prints invalid input
 InvalidStatement:
         li $v0, 4
         la $a0, Invalid
         syscall
-
-
+        li $v0, 10
+        syscall
 
 #Exits the program
     printOutput:
@@ -53,4 +58,3 @@ InvalidStatement:
         syscall
         li $v0, 10
         syscall
-
