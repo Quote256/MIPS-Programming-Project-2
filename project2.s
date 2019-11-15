@@ -16,6 +16,12 @@ iterator: .word 0 #Added iterator
 size: .word 4 #Added size
 tab: .word 9 #For tabs
 space: .word 32 #For spaces
+NumberLowest: .word 48 #Lowest number (0)
+NumberHighest: .word 57 #Highest number (9)
+LowLowest: .word 97 #Lowest lowercase letter (a)
+LowHighest: .word 120 #Highest lowercase letter that I can go to (x)
+UpLowest: .word 65 #Lowest uppercase letter (A)
+UpHighest: .word 88 #Highest uppercase letter that I can go to (X)
 
 outputMessage: .asciiz "\nThe output is: " #Output message
 Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input is invalid
