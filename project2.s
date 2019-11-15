@@ -12,6 +12,8 @@ StringInput: .space 1001                 #Allocated space for up to 1000 charact
 baseN: .word 34
 baseN2: .word 1156
 baseN3: .word 39304
+iterator: .word 0
+size: .word 4
 outputMessage: .asciiz "\nThe output is: " #Output message
 Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input is invalid
 
@@ -28,9 +30,23 @@ Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input i
         li $a1, 1001
         syscall
 
-        #li $t0, 4
+#Storing variables
+        la $t0, StringInput
+        lw $t1, iterator
+        lw $t2, size
+#Loop
+     loop:
+        bg   
+        
+#Prints invalid input
+InvalidStatement:
+        li $v0, 4
+        la $a0, Invalid
+        syscall
 
-#exits the program
+
+
+#Exits the program
     printOutput:
         li $v0, 4
         la $a0, outputMessage
