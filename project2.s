@@ -47,11 +47,19 @@ Invalid: .asciiz "\nInvalid Input"         #Text displayed when the user input i
         beq $s0, 0, last
 	    beq $s0, 9, skip
 	    beq $s0, 32, skip
+        move $t6, $t1
+	    j second
 
     skip:
         addi $t1, $t1,1
-	j before
+	    j first
 
+    second:
+	    li $t7, -1
+	    la $t0, StringInput
+	    add $t0,$t0,$t1
+
+    
 
 counter:
         addi $t4, $t4, 1 #Adds 1 to $t4 and stores the value in $t4
@@ -75,7 +83,12 @@ counter:
         add $s3, $s3, $s2
         j counter
         
-        
+    finish:
+	
+        li $v0, 4
+        la $a0, output
+        syscall	    
+    
 #Prints invalid input
 InvalidStatement:
         li $v0, 4
